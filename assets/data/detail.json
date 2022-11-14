@@ -1,0 +1,142 @@
+{
+    "detail": {
+        "id": "300003002726475",
+        "pageUrl": "https://th.jobsdb.com/th/th/job/business-personal-assistant-yearly-renewal-contract-300003002726475",
+        "jobTitleSlug": null,
+        "applyUrl": {
+            "url": "https://th.jobsdb.com/th/th/job/300003002726475/apply-preview",
+            "isExternal": false
+        },
+        "isExpired": false,
+        "isConfidential": false,
+        "isClassified": false,
+        "accountNum": 300331988,
+        "advertisementId": "300003002726475",
+        "subAccount": null,
+        "showMoreJobs": null,
+        "adType": "standout",
+        "header": {
+            "banner": {
+                "bannerUrls": {
+                    "large": "https://image-service-cdn.seek.com.au/584e7eec45beab07d695c6f4fff8bb699c0b6f22/a868bcb8fbb284f4e8301904535744d488ea93c1"
+                }
+            },
+            "salary": {
+                "max": null,
+                "min": null,
+                "type": "monthly",
+                "extraInfo": null,
+                "currency": "THB",
+                "isVisible": false
+            },
+            "logoUrls": {
+                "small": null,
+                "medium": null,
+                "large": null,
+                "normal": "https://image-service-cdn.seek.com.au/ea29bee9a8c1809682dc411c3efcf8e0157c981e/ee4dce1061f3f616224767ad58cb2fc751b8d2dc"
+            },
+            "jobTitle": "Business & Personal Assistant (Yearly Renewal Contract)",
+            "company": {
+                "name": "BMW (Thailand) Company Limited",
+                "url": "http://www.bmw.co.th",
+                "slug": "bmw-thailand-company-limited",
+                "advertiserId": "th300331988"
+            },
+            "review": null,
+            "expiration": 23,
+            "postedDate": "16 hours ago",
+            "postedAt": "2022-11-08T23:00:00Z",
+            "isInternship": false
+        },
+        "companyDetail": {
+            "companyWebsite": "http://www.bmw.co.th",
+            "companySnapshot": {
+                "avgProcessTime": "",
+                "registrationNo": "",
+                "employmentAgencyPersonnelNumber": null,
+                "employmentAgencyNumber": null,
+                "telephoneNumber": null,
+                "workingHours": null,
+                "website": null,
+                "facebook": null,
+                "size": "",
+                "dressCode": null,
+                "nearbyLocations": ""
+            },
+            "companyOverview": {
+                "html": ""
+            },
+            "videoUrl": null,
+            "companyPhotos": []
+        },
+        "jobDetail": {
+            "summary": [
+                "Personal Assistance",
+                "Attractive Salary",
+                "Sales Administrative Support"
+            ],
+            "jobDescription": {
+                "html": "<p><strong>Qualification :</strong><br /><br />Bachelor or Master in Management / Business<br />Business and Economics knowledge<br />Automotive knowledge is a plus<br /><br /><strong>Special Skills Require :</strong><br /><br /><span>Organinization</span> skills<br />Good analytical skills<br />Rational thinking and good logical thinking<br />Strong Collaboration and Assertiveness skills<br />Positive attitude<br /><span>Powerpoint</span>, Excel, Word<br />Good business English<br /><br /><strong>Major Responsibilities :<br /></strong><br />Personal Assistant to Sales Director<br />Business reporting &amp; Simple business task  <br />Coordination or team meetings / Minutes of meetings<br />Support Team organization<br /><span>Adhoc</span> business and administrative tasks support for the Sales team<br />Support for PPT presentations &amp; Excel analysis</p>"
+            },
+            "jobRequirement": {
+                "careerLevel": "ระดับเจ้าหน้าที่",
+                "yearsOfExperience": "3 ปี",
+                "qualification": "ปริญญาตรี",
+                "fieldOfStudy": null,
+                "industryValue": {
+                    "value": "automotive",
+                    "label": "ธุรกิจยานยนต์"
+                },
+                "skills": null,
+                "employmentType": "งานเต็มเวลา, งานสัญญาจ้าง",
+                "languages": null,
+                "postedDate": "16 hours ago",
+                "closingDate": null,
+                "jobFunctionValue": [
+                    {
+                        "code": 15,
+                        "name": "งานธุรการ งานทรัพยากรบุคคล",
+                        "children": null
+                    },
+                    {
+                        "code": 20,
+                        "name": "งานเลขานุการ งาน Personal Assistant",
+                        "children": null
+                    },
+                    {
+                        "code": 233,
+                        "name": "งานขาย งานบริการลูกค้า งานพัฒนาธุรกิจ",
+                        "children": null
+                    },
+                    {
+                        "code": 58,
+                        "name": "งานพัฒนาธุรกิจ",
+                        "children": null
+                    },
+                    {
+                        "code": 307,
+                        "name": "ธุรการฝ่ายขาย",
+                        "children": null
+                    }
+                ],
+                "benefits": [
+                    "บริการรถรับส่งพนักงาน",
+                    "ประกันชีวิต",
+                    "ประกันสุขภาพ",
+                    "ทำงานที่บ้าน",
+                    "ทำงานสัปดาห์ละ 5 วัน",
+                    "มีเวลาการทำงานที่ยืดหยุ่น"
+                ]
+            },
+            "whyJoinUs": null
+        },
+        "location": [
+            {
+                "location": "ปทุมวัน",
+                "locationId": "34",
+                "omnitureLocationId": "34"
+            }
+        ],
+        "sourceCountry": "th"
+    }
+}
