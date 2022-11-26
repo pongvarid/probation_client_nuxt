@@ -8,7 +8,7 @@ export default {
 
   router: {
     mode: 'hash',
-    base: "/probation_client/" //ชื่อ github project
+    base: "/probation_client_nuxt/" //ชื่อ github project
   },
  
   // Global page headers: https://go.nuxtjs.dev/config-head
