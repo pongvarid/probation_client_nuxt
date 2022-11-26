@@ -35,14 +35,12 @@
             <div>{{job.description}}</div>
         </v-card-text>
 
-        <v-divider class="mx-4"></v-divider>
-
-        <!-- <v-card-title>Tonight's availability</v-card-title>  -->
-        <!-- <v-card-actions>
-                <v-btn color="deep-purple lighten-2" text @click="reserve">
-                    Reserve
-                </v-btn>
-            </v-card-actions> -->
+        <v-divider class="mx-4"></v-divider> 
+        <v-card-actions>
+            <v-chip small @click="$router.push(`/admin/jobbookmark/`)"><v-icon>mdi-bookmark</v-icon> 2 </v-chip>
+                <v-spacer></v-spacer>
+                <v-chip small ><v-icon>mdi-eye</v-icon> 180</v-chip>
+            </v-card-actions>
     </v-card>
     <v-dialog v-model="dialog" scrollable fullscreen persistent :overlay="false" max-width="500px" transition="dialog-transition">
         <v-card>
@@ -61,6 +59,7 @@
                     <v-text-field outlined dense label="อัตรา" id="id"></v-text-field> 
                     <v-file-input label="ภาพประกอบ" outlined dense></v-file-input>
                     <v-textarea outlined dense textarea label="รายละเอียดของงาน เงื่อนไข คุณสมบัติ สวัสดิการ" placeholder="รายละเอียดของงาน เงื่อนไข คุณสมบัติ สวัสดิการ"></v-textarea>
+                    <v-checkbox label="ยินดียอมรับผู้เคยมีประวัติดำเนินคดี" ></v-checkbox>
                     <v-btn block depressed color="success">บันทึก</v-btn>
                 </v-form>
             </v-card-text>

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <v-toolbar   flat fixed>
+    <v-toolbar flat fixed>
         <v-btn @click="$router.go(-1)" fab x-small outlined>
             <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
@@ -15,7 +15,7 @@
     <h2 class="text-xl ml-4 mr-4 mt-4">เจ้าหน้าที่พัฒนาทรัพยากรบุคคล ประจำสำนักงานใหญ่ ปฏิบัติงาน จันทร์-ศุกร์</h2>
     <span class="ml-4 mt-2">ลงประกาศเมื่อ 8 ชั่วโมงที่ผ่านมา</span>
     <v-divider></v-divider>
-    <div class="flex items-center p-4">
+    <div class="flex items-center p-4" @click="$router.push(`/admin/account/view/`)">
         <img class="h-10" src="https://image-service-cdn.seek.com.au/528193c5d2dd760dd6041c07f9c34b5571d98c46/ee4dce1061f3f616224767ad58cb2fc751b8d2dc" alt="">
         <span class="text-xs ml-2">Secretary to CEO (Junior Level CHIA TAI CO., LTD.</span>
     </div>
@@ -52,7 +52,7 @@
 
         <div class="bg-green-100 rounded p-2 m-2">
             <Core-List icon="mdi-phone" head="ติดต่อ" txt="0988203979"></Core-List>
-            <Core-List icon="mdi-chat" head="Line" txt="@pongv"></Core-List> 
+            <Core-List icon="mdi-chat" head="Line" txt="@pongv"></Core-List>
         </div>
 
     </div>

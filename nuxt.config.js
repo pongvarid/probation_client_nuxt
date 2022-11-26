@@ -10,13 +10,7 @@ export default {
     mode: 'hash',
     base: "/probation_client/" //ชื่อ github project
   },
-
-  generate: {
-    dir: 'public'
-  },
-
-
-
+ 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - ui-orange',

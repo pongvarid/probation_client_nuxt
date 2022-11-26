@@ -21,13 +21,10 @@
         </v-card-text>
 
         <v-divider class="mx-4"></v-divider>
-
-        <!-- <v-card-title>Tonight's availability</v-card-title>  -->
-        <!-- <v-card-actions>
-            <v-btn color="deep-purple lighten-2" text @click="reserve">
-                Reserve
-            </v-btn>
-        </v-card-actions> -->
+        <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-chip small ><v-icon>mdi-eye</v-icon> 180</v-chip>
+            </v-card-actions>
     </v-card>
 </div>
 </template>

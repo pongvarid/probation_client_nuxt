@@ -15,14 +15,41 @@
                     <v-text-field dense outlined label="ชื่อบริษัท หน่วยงาน"></v-text-field>
                     <v-text-field dense outlined label="ที่อยู่"></v-text-field>
                     <v-text-field dense outlined label="เบอร์โทรติดต่อ"></v-text-field>
-                    <v-btn class="mt-6" depressed block @click="register" color="primary">สมัครสมาชิก</v-btn>
+                    <v-btn @click="dialog=true" class="mt-6" depressed block color="primary">สมัครสมาชิก</v-btn>
                 </v-form>
             </v-card-text>
         </v-card>
         <v-divider></v-divider><br>
-    <v-btn outlined class="mt-6" depressed block @click="$router.push(`/auth/adminlogin/`)" color="primary">กลับไปหน้าเข้าสู่ระบบ</v-btn>
+        <v-btn outlined class="mt-6" depressed block @click="$router.push(`/auth/adminlogin/`)" color="primary">กลับไปหน้าเข้าสู่ระบบ</v-btn>
 
-    </div> 
+    </div>
+
+    <v-dialog v-model="dialog" scrollable fullscreen persistent :overlay="false" max-width="500px" transition="dialog-transition">
+        <v-card>
+            <v-card-title primary-title>
+                เงื่อนไขการสมัครสมาชิก
+            </v-card-title>
+            <v-card-text>
+               <p> <b>เงื่อนไขการสมัครสมาชิก</b><br> 
+                เงื่อนไขข้อตกลงและสิทธิประโยชน์การเป็นสมาชิก (สำหรับบริษัทหาคน)<br>
+                <b>เงื่อนไขข้อตกลง</b><br> 
+                การเป็นสมาชิกเพื่อประกาศตำแหน่งงานว่าง และค้นหาใบสมัครงาน สามารถเลือกเป็นสมาชิก แบบไม่มีค่าใช้จ่าย หรือ แบบมีค่าใช้จ่ายขึ้นอยู่กับความต้องการของแต่ละบริษัท (โปรดศึกษาความแตกต่างของสมาชิกแต่ละประเภท)
+                สมาชิก 1 บริษัทสามารถมีได้ 1 account เท่านั้น ดังนั้นก่อนการสมัครสมาชิกโปรดแน่ใจว่า บริษัทของท่านยังไม่เคยเป็นสมาชิกมาก่อน
+                โปรดกรอกข้อมูลบริษัทให้ครบถ้วนและเป็นความจริงเท่านั้น หากพบเจอหรือมีการแจ้งว่าข้อมูลบริษัทดังกล่าวไม่ถูกต้องหรือไม่เหมาะสม อาจมีการยกเลิกการเป็นสมาชิกโดยไม่ต้องแจ้งให้ทราบล่วงหน้า
+                บริษัทสมาชิกที่ทำธุรกิจเกี่ยวกับ MLM ประกันชีวิต บัตรเครดิต หรือ บริษัทที่ต้องการรับสมัครพนักงานจำนวนมาก/ตลอดเวลา ไม่สามารถสมัครเป็นสมาชิกแบบ FREE ได้
+                ห้ามประกาศรับสมัครพนักงานเพื่อทำงานที่ ผิดกฎหมาย ผิดศิลธรรม หรือ งานที่คนส่วนใหญ่ในสังคมไม่ยอมรับ หากพบเห็นจะดำเนินการยกเลิกการเป็นสมาชิกโดยทันที
+                ห้ามประกาศข้อความอื่นใดที่ไม่ใช่ตำแหน่งงานว่าง หากพบเห็นข้อความดังกล่าวจะถูกลบทิ้ง และอาจมีการพิจารณายกเลิกการเป็นบริษัทสมาชิก
+                หากเกิดการฟ้องร้อง ไม่พึงพอใจ หรือเกิดเหตุการณ์ใดก็แล้วแต่ อันเนื่องมาจากข้อมูล (ข้อความ,รูปภาพ,ภาพเคลื่อนไหว,ไฟล์ข้อมูล) ที่สมาชิกเป็นผู้เพิ่มข้อมูล ทางทีมงาน jobnorththailand.com อาจมีการพิจารณายกเลิกการเป็นบริษัทสมาชิก และไม่ขอรับผิดชอบในข้อมูลดังกล่าวไม่ว่ากรณีใดๆ ทั้งสิ้น
+                เว็บไซต์นี้มีการเผยแพร่ข้อมูลส่วนบุคคล เช่น ข้อมูลบริษัท โปรดทำความเข้าใจ นโยบายคุ้มครองสิทธิส่วนบุคคล
+                คลิก ฉันยอมรับตามเงื่อนไขดังกล่าว</p>
+            </v-card-text>
+            <v-card-actions>
+                <v-checkbox label="ยอมรับเงื่อนไขการให้บริการ" v-model="agreement" >  </v-checkbox>
+                <v-spacer></v-spacer>
+                <v-btn v-if="agreement" color="primary" flat @click="register">สมัครสมาชิก</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
 
 </div>
 </template>
@@ -31,11 +58,14 @@
 export default {
     layout: 'auth',
     data: () => ({
-
+        dialog:false,
+        agreement: false,
     }),
     methods: {
         async register() {
-            await this.$web.alert('สมัครสมาชิกสำเร็จ', 'success', `ขอบคุณที่สมัครสมาชิกกับเรา ทางผู้ดูแลระบบต้องดำเนินการตรวจสอบข้อมูลหน่วยงานของคุณก่อน และจะติดต่อกลับไปภายใน 1-2 วันทำการ เพื่อยืนยันการสมัครสมาชิก`)
+            await this.$web.alert('สมัครสมาชิกสำเร็จ', 'success', `ขอบคุณที่สมัครสมาชิกกับเรา`)
+            this.dialog = false
+            await this.$router.replace(`/auth/adminlogin/`)
         }
     }
 }
