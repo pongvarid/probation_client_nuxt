@@ -1,20 +1,20 @@
 <template>
       <v-bottom-navigation fixed>
-        <v-btn  @click="$router.push(`/app/`)">
+        <v-btn color="white"  @click="$router.push(`/app/`)">
             <span>หน้าหลัก</span> 
             <v-icon>mdi-home</v-icon>
         </v-btn>
 
-        <v-btn  @click="$router.push(`/app/search/`)">
+        <v-btn color="white"  @click="$router.push(`/app/search/`)">
             <span>หางาน</span> 
             <v-icon>mdi-card-search</v-icon>
         </v-btn> 
-        <v-btn  @click="$router.push(`/app/bookmark/`)">
+        <v-btn color="white"  @click="$router.push(`/app/bookmark/`)">
             <span>งานที่บันทึกไว้</span> 
             <v-icon>mdi-bookmark</v-icon>
         </v-btn>
 
-        <v-btn  @click="$router.push(`/app/account/`)">
+        <v-btn color="white"  @click="$router.push(`/app/account/`)">
             <span >ฉัน</span> 
             <v-icon>mdi-account</v-icon>
         </v-btn>
