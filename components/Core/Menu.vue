@@ -1,6 +1,7 @@
 <template>
       <v-bottom-navigation fixed>
-        <v-btn color="white"  @click="$router.push(`/app/`)">
+        <div class="w-full flex justify-center items-center">
+            <v-btn color="white"  @click="$router.push(`/app/`)">
             <span>หน้าหลัก</span> 
             <v-icon>mdi-home</v-icon>
         </v-btn>
@@ -18,6 +19,7 @@
             <span >ฉัน</span> 
             <v-icon>mdi-account</v-icon>
         </v-btn>
+        </div>
     </v-bottom-navigation>
 </template>
 
