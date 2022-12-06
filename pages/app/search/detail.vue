@@ -4,7 +4,7 @@
         <v-btn @click="$router.go(-1)" fab x-small outlined>
             <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
-        <span class="ml-2 text-xl"> เจ้าหน้าที่พัฒนาทรัพยากรบุคคล</span>
+        <span class="ml-2 text-xl"> {{job.name}}</span>
         <v-spacer></v-spacer>
         <v-btn fab small outlined color="orange">
             <v-icon>mdi-bookmark</v-icon>
@@ -12,8 +12,8 @@
     </v-toolbar>
 
     <img src="https://image-service-cdn.seek.com.au/bd520ed0973dbc871079a9e3c04da6e0d1f6b8f9/a868bcb8fbb284f4e8301904535744d488ea93c1" alt="">
-    <h2 class="text-xl ml-4 mr-4 mt-4">เจ้าหน้าที่พัฒนาทรัพยากรบุคคล ประจำสำนักงานใหญ่ ปฏิบัติงาน จันทร์-ศุกร์</h2>
-    <span class="ml-4 mt-2">ลงประกาศเมื่อ 8 ชั่วโมงที่ผ่านมา</span>
+    <h2 class="text-xl ml-4 mr-4 mt-4">{{job.name}}</h2>
+    <span class="ml-4 mt-2">{{job.created_at}}</span>
     <v-divider></v-divider>
     <div class="flex items-center p-4" @click="$router.push(`/admin/account/view/`)">
         <img class="h-10" src="https://image-service-cdn.seek.com.au/528193c5d2dd760dd6041c07f9c34b5571d98c46/ee4dce1061f3f616224767ad58cb2fc751b8d2dc" alt="">
@@ -67,7 +67,7 @@ export default {
         job: {}
     }),
     async created() {
-        this.job = this.$job
+        this.job = await this.$core.getHttp(`/api/job/job-detail/${this.$route.params.id}/`)
     }
 }
 </script>

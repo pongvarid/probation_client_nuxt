@@ -6,6 +6,10 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  layout: 'auth',
+  name: 'IndexPage',
+  async created(){
+    await this.$router.replace('/auth/login')
+  }
 }
 </script>

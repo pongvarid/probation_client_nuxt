@@ -1,6 +1,6 @@
 <template>
 <v-app> 
-    <v-main  >
+    <v-main v-if="response" >
         <nuxt class="pb-20" />
     </v-main>
     <Core-Menu></Core-Menu>
@@ -9,28 +9,22 @@
 
 <script>
 export default {
-    name: 'DefaultLayout',
-    data() {
-        return {
-            clipped: false,
-            drawer: false,
-            fixed: false,
-            items: [{
-                    icon: 'mdi-apps',
-                    title: 'Welcome',
-                    to: '/'
-                },
-                {
-                    icon: 'mdi-chart-bubble',
-                    title: 'Inspire',
-                    to: '/inspire'
-                }
-            ],
-            miniVariant: false,
-            right: true,
-            rightDrawer: false,
-            title: 'Vuetify.js'
-        }
+  data: () => ({
+    response: false,
+  }),
+  async created() {
+    await this.$auth.checkUserLogin();
+    this.response = true;
+
+  },
+  methods: {
+
+  },
+  watch: {
+    async $route(to, from) {
+      await this.$auth.checkUserLogin()
     }
+  }
 }
 </script>
+

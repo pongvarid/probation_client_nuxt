@@ -3,12 +3,13 @@
     <div class="xbg">
         <div class="flex  p-5 w-full ">
             <div class="flex flex-col">
-                <span>สวัสดี,</span><span class="text-xl font-semibold">นางสาวเอ</span>
+                <span>สวัสดี,</span><span class="text-xl font-semibold">{{user.first_name}}</span>
             </div>
             <v-spacer></v-spacer>
-            <v-avatar size="40">
-                <v-img src="https://scontent.fcnx3-1.fna.fbcdn.net/v/t1.6435-9/148118814_1376793679324214_1244265604538678512_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=pAmN7IOn38UAX-eQcZs&_nc_ht=scontent.fcnx3-1.fna&oh=00_AfAU17UQmBErYgGqGqobV6h7KbME8dw-12f6pZ0Cf9DJWQ&oe=63934A24" alt="">
+            <v-avatar size="40" color="white">
+                <v-img v-if="user.image_profile" src="https://scontent.fcnx3-1.fna.fbcdn.net/v/t1.6435-9/148118814_1376793679324214_1244265604538678512_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=pAmN7IOn38UAX-eQcZs&_nc_ht=scontent.fcnx3-1.fna&oh=00_AfAU17UQmBErYgGqGqobV6h7KbME8dw-12f6pZ0Cf9DJWQ&oe=63934A24" alt="">
                 </v-img>
+                <v-icon v-else>mdi-account</v-icon>
                 </v-avatar>
         </div>
         <!-- <h2>ข่าวประชาสัมพันธ์</h2> -->
@@ -22,12 +23,7 @@
     <div class="p-5 ">
         <h2 class="text-base font-semibold">งานแนะนำ</h2><br>
         <div class="flex flex-wrap">
-            <v-chip @click="$router.push('/app/search/')" class="m-1">#งานสวน</v-chip>
-            <v-chip @click="$router.push('/app/search/')" class="m-1">#งานธุรการ</v-chip>
-            <v-chip @click="$router.push('/app/search/')" class="m-1">#งานช่าง</v-chip>
-            <v-chip @click="$router.push('/app/search/')" class="m-1">#ครู</v-chip>
-            <v-chip @click="$router.push('/app/search/')" class="m-1">#ไอที</v-chip>
-            <v-chip @click="$router.push('/app/search/')" class="m-1">#แม่บ้าน</v-chip>
+            <v-chip v-for="skill,i in skills" :key="i" @click="$router.push(`/app/search/?skill=${skill.id}`)" class="m-1">#งานสวน</v-chip>
         </div>
         <Home-RecommendJob></Home-RecommendJob>
     </div>
@@ -39,7 +35,26 @@
 
 <script>
 export default {
-    name: 'IndexPage'
+    name: 'IndexPage',
+  data: () => ({
+    skills:[],
+    response: false,
+  }),
+  async created() {
+  await this.getSkills();
+    this.response = true;
+  },
+  methods: {
+    async getSkills() {
+      let skills = await this.$core.getHttp('/api/job/category/');
+      this.skills = skills;
+    },
+  },
+  computed: {
+    user() {
+      return this.$auth.user;
+    }
+  },
 }
 </script>
 

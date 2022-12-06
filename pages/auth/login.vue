@@ -8,13 +8,13 @@
   <div class="p-4">
     <v-card outlined>
         <v-card-text>
-            <v-form>
-            <v-text-field outlined label="ชื่อผู้ใช้"></v-text-field>
-            <v-text-field type="password" outlined label="รหัสผ่าน"></v-text-field>
+            <v-form ref="vform">
+            <v-text-field v-model="form.username" :rules="[$v.req]" outlined label="ชื่อผู้ใช้"></v-text-field>
+            <v-text-field v-model="form.password"  :rules="[$v.req]" type="password" outlined label="รหัสผ่าน"></v-text-field>
             <v-toolbar color="transparent" flat>
                 <v-btn text small color="primary">ลืมรหัสผ่าน</v-btn>
                 <v-spacer></v-spacer>
-                <v-btn @click="$router.push(`/app/`)" color="primary">เข้าสู่ระบบ</v-btn>
+                <v-btn @click="login" color="primary">เข้าสู่ระบบ</v-btn>
             </v-toolbar>
         </v-form>
         </v-card-text>
@@ -30,8 +30,16 @@
 export default {
     layout: 'auth',
     data: () => ({
-
+        form:{},
     }),
+  methods:{
+    async login() {
+      let vform = this.$refs.vform;
+      if (vform.validate()) {
+        await this.$auth.login(this.form)
+      }
+    }
+  }
 }
 </script>
 

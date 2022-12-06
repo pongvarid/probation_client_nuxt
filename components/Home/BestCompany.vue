@@ -5,7 +5,7 @@
         <v-slide-item v-for="company,index in companies" :key="index" v-slot="{ active, toggle }" class="w-full">
             <v-card outlined class="ma-2" height="100" width="100" >
                 <div class="p-2 flex flex-col w-full h-full justify-center ">
-                    <img class="w-auto" :src="company.logo" alt=""> 
+                    <img class="w-auto" :src="company.image" alt="">
                 </div>
             </v-card>
         </v-slide-item>
@@ -21,13 +21,8 @@ export default {
         companies: [],
     }),
     async created() {
-        this.companies = this.$_.map(data.jobs, (r) => {
-            return {
-                name: (r.companyMeta.name).split(' ')[0],
-                logo: r.companyMeta.logoUrl,
-                slug: r.companyMeta.slug
-            }
-        })
+      let companies = await this.$core.getHttp(`/api/job/office/?is_active=true`)
+        this.companies =  companies
     }
 }
 </script>

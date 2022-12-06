@@ -79,25 +79,11 @@ class AuthModule extends VuexModule {
         await this.reToken();
         let user = await Core.postHttp(`/api/auth/v2/register/`, form)
         if(user.username){
-            await this.createUserPoint(user)
+
         }
         return user
     }
  
-    private async createUserPoint(user:any){
-        try {
-            let tiers = await Core.getHttp(`/api/account/tier/?default=true`)
-            let form = {
-                "total": 0,
-                "current": 0,
-                "tier": tiers[0].id,
-                "user": user.id
-            }
-            await Core.postHttp(`/api/account/userpoint/`, form)
-        } catch (error) {
-            
-        }
-    }
 
 
     public async reToken() {

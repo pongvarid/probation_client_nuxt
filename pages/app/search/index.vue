@@ -10,30 +10,32 @@
     </div>
     <div class="p-4 mbg">
         <h1 class="font-semibold text-xl">รายการค้นหา</h1>
-        <v-card outlined class="mx-auto mt-4" max-width="374" v-for="job,index in data" :key="index" @click="$router.push(`/app/search/detail/`)">
-            <template slot="progress">
-                <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
-            </template> 
-            <v-img contain height="150" :src="job.bannerUrl"></v-img> 
-            <v-card-title>{{job.jobTitle}}</v-card-title>
+      <v-card class="mx-auto my-12" max-width="374" v-for="job,index in data" :key="index" @click="$router.push(`/app/search/${job.id}/`)" >
+        <template slot="progress">
+          <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
+        </template>
 
-            <v-card-text>
-                <v-divider class="mt-2"></v-divider>
-                <div class="my-4 text-subtitle-1">
-                    <div class="flex h-full items-center">
-                        <img class="h-auto w-16  mr-2" :src="job.com_logo" alt="">
-                        <span class="text-xs">{{job.com_name}}</span>
-                    </div>
-                </div>
-                <div>{{job.description}}</div>
-            </v-card-text>
+        <v-img height="150" :src="job.image"></v-img>
 
-            <v-divider class="mx-4"></v-divider>
-            <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-chip small ><v-icon>mdi-eye</v-icon> 180</v-chip>
-            </v-card-actions>
-        </v-card>
+        <v-card-title>{{job.name}}</v-card-title>
+
+        <v-card-text>
+          <v-divider class="mt-2"></v-divider>
+          <div class="my-4 text-subtitle-1" v-if="job.office">
+            <div class="flex h-full items-center">
+              <img class="h-10  mr-2" :src="job.office.image" alt="">
+              <span class="text-xs">{{job.name}}</span>
+            </div>
+          </div>
+          <div>{{job.content}}</div>
+        </v-card-text>
+
+        <v-divider class="mx-4"></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-chip small ><v-icon>mdi-eye</v-icon> {{job.views}}</v-chip>
+        </v-card-actions>
+      </v-card>
     </div>
 </div>
 </template>
@@ -44,7 +46,7 @@ export default {
         data: [],
     }),
     async created() {
-        this.data = this.$jobs
+        this.data = await this.$core.getHttp(`/api/job/job-detail/`)
     }
 }
 </script>

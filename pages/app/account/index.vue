@@ -20,13 +20,13 @@
                     <v-tab-item>
                         <div class="p-4">
                             <h2>ข้อมูลส่วนตัว</h2><br>
-                            <v-text-field disabled dense readonly outlined value="2140" label="รหัส" id="id"></v-text-field>
-                            <v-text-field disabled dense readonly outlined value="นางสาวเอ" label="ชื่อ" id="id"></v-text-field>
-                            <v-text-field disabled dense readonly outlined value="นามสมมุติ" label="นามสกุล" id="id"></v-text-field>
-                            <v-text-field disabled dense readonly outlined value="17-08-2541" label="วัน/เดือน/ปี เกิด" id="id"></v-text-field>
-                            <v-text-field disabled dense readonly outlined value="24" label="อายุ" id="id"></v-text-field>
-                            <v-text-field disabled dense readonly outlined value="184771125XXXX" label="เลขบัตรประจำตัวประชาชน" id="id"></v-text-field>
-                            <v-text-field disabled dense readonly outlined value="หญิง" label="เพศ" id="id"></v-text-field>
+                            <v-text-field disabled dense readonly outlined v-model="form.code_id" value="2140" label="รหัส" id="id"></v-text-field>
+                            <v-text-field disabled dense readonly outlined v-model="form.first_name"  value="นางสาวเอ" label="ชื่อ" id="id"></v-text-field>
+                            <v-text-field disabled dense readonly outlined v-model="form.last_name"  value="นามสมมุติ" label="นามสกุล" id="id"></v-text-field>
+                            <v-text-field disabled dense readonly outlined v-model="form.birth_date"  value="17-08-2541" label="วัน/เดือน/ปี เกิด" id="id"></v-text-field>
+                            <v-text-field disabled dense readonly outlined v-model="form.age"  value="24" label="อายุ" id="id"></v-text-field>
+                            <v-text-field disabled dense readonly outlined v-model="form.code"  value="184771125XXXX" label="เลขบัตรประจำตัวประชาชน" id="id"></v-text-field>
+                            <v-text-field disabled dense readonly outlined v-model="form.gender"  value="หญิง" label="เพศ" id="id"></v-text-field>
 
                             <h2>ข้อมูลการติดต่อ</h2><br>
                             <v-text-field dense outlined value="0874456689" label="เบอร์โทร" id="id"></v-text-field>
@@ -211,7 +211,21 @@ export default {
         dialog3: false,
         dialog4: false,
         dialog5: false,
+      form:{},
     }),
+  async created(){
+      this.form = this.$auth.user
+  },
+  methods:{
+      async run(){
+
+      }
+  },
+  computed: {
+      user() {
+          return this.$auth.user
+      }
+  }
 }
 </script>
 

@@ -8,6 +8,14 @@
 
 <script>
 export default {
+  async mounted() {
+    await this.run();
+  },
+  methods: {
+    async run(){
+      await this.$auth.checkUserLogin();
+    }
+  }
 
 }
 </script>
