@@ -48,7 +48,7 @@
         v-model="form.zip_code"
         label="รหัสไปรษณีย์"
       ></v-text-field>
-      <v-file-input dense outlined label="ภาพโลโก้"></v-file-input>
+      <v-file-input v-model="form.file" dense outlined label="ภาพโลโก้"></v-file-input>
       <v-textarea
         :rules="[$v.req]"
         dense
@@ -81,6 +81,7 @@ export default {
   },
   methods: {
     async run() {
+      await this.$auth.setUser();
       this.form = this.$auth.myOffice;
       console.log(this.form);
     },
@@ -93,6 +94,15 @@ export default {
             this.form
           );
           if (job.id) {
+            if(this.form.file){
+              let form = new FormData();
+              form.append("image", this.form.file);
+               await this.$core.putImageHttp(
+                `/api/job/office/${job.id}/`,
+                form
+              );
+
+            }
             await this.$web.alert(
               `บันทึกข้อมูลเรียบร้อย`,
               `success`,

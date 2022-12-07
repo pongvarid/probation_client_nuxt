@@ -8,14 +8,16 @@
     <div class="p-4">
         <v-card outlined>
             <v-card-text>
-                <v-form>
-                    <v-text-field dense outlined label="ชื่อผู้ใช้"></v-text-field>
-                    <v-text-field dense type="password" outlined label="รหัสผ่าน"></v-text-field>
-                    <v-text-field dense outlined label="อีเมล"></v-text-field>
-                    <v-text-field dense outlined label="ชื่อบริษัท หน่วยงาน"></v-text-field>
-                    <v-text-field dense outlined label="ที่อยู่"></v-text-field>
-                    <v-text-field dense outlined label="เบอร์โทรติดต่อ"></v-text-field>
-                    <v-btn @click="dialog=true" class="mt-6" depressed block color="primary">สมัครสมาชิก</v-btn>
+                <v-form ref="vform">
+                    <v-text-field :rules="[$v.req]" v-model="form.username" dense outlined label="ชื่อผู้ใช้"></v-text-field>
+                    <v-text-field :rules="[$v.req]"  v-model="form.password" dense type="password" outlined label="รหัสผ่าน"></v-text-field>
+                    <v-text-field :rules="[$v.req]"  v-model="form.password_confirm" dense type="password" outlined label="ยืนยันรหัสผ่าน"></v-text-field>
+                    <v-text-field :rules="[$v.req]"  v-model="form.email" dense outlined label="อีเมล"></v-text-field>
+
+                    <v-text-field :rules="[$v.req]"  v-model="formCom.name" dense outlined label="ชื่อบริษัท หน่วยงาน"></v-text-field>
+                    <v-text-field :rules="[$v.req]"  v-model="formCom.address" dense outlined label="ที่อยู่"></v-text-field>
+
+                    <v-btn @click="register()" class="mt-6" depressed block color="primary">สมัครสมาชิก</v-btn>
                 </v-form>
             </v-card-text>
         </v-card>
@@ -58,14 +60,28 @@
 export default {
     layout: 'auth',
     data: () => ({
+      form:{},
+      formCom:{},
         dialog:false,
         agreement: false,
     }),
     methods: {
         async register() {
-            await this.$web.alert('สมัครสมาชิกสำเร็จ', 'success', `ขอบคุณที่สมัครสมาชิกกับเรา`)
-            this.dialog = false
-            await this.$router.replace(`/auth/adminlogin/`)
+          if(this.$refs.vform.validate()){
+            if(this.form.password_confirm == this.form.password){
+              let reg = await this.$auth.register({...this.form,is_employer:true,firsname:"Admin",lastname:this.formCom.name,display_name:this.formCom.name})
+              if(reg.id){
+                this.formCom.user = reg.id
+                let com = await this.$core.postHttp('/api/job/office/',this.formCom)
+                if(com.id){
+                  await this.$web.alert(`สมัครสมาชิกเรียบร้อยแล้ว`,`success`,`งานของคุณจะยังไม่แสดงในเว็บไซต์ จนกว่าผุ้ดูแลระบบจะตรวจสอบและอนุมัติ`)
+                  this.$router.push('/login')
+                }
+              }
+            }else {
+              await this.$web.alert('รหัสผ่านไม่ตรงกัน','error','กรุณากรอกรหัสผ่านให้ตรงกัน')
+            }
+          }
         }
     }
 }

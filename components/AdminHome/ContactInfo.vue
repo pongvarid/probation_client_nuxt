@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar color="transparent" dense flat>
+    <v-toolbar color="transparent" dense flat class="mt-4">
       <h2>ข้อมูลการติดต่อ</h2>
       <v-spacer></v-spacer>
       <v-btn small depressed color="success" @click="dialog = true"
@@ -43,14 +43,12 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text @click="dialog = false"
-              >Close</v-btn
-            >
+
             <v-btn
               color="success"
               depressed
               @click="form.id ? updateContact() : storeContact()"
-              >Save</v-btn
+              >บันทึก</v-btn
             >
           </v-card-actions>
         </v-form>
@@ -71,10 +69,10 @@
         <!-- <v-divider></v-divider> -->
         <v-card-actions
           ><v-spacer></v-spacer>
-          <v-btn depressed fab small @click="openDialog(info)" color="warning">
+          <v-btn depressed fab x-small @click="openDialog(info)" color="warning">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
-          <v-btn depressed fab small @click="deleteContact(info)" color="error">
+          <v-btn depressed fab x-small @click="deleteContact(info)" color="error">
             <v-icon>mdi-delete</v-icon>
           </v-btn>
         </v-card-actions>

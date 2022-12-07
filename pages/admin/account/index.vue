@@ -2,14 +2,16 @@
   <div>
     <!-- <h1 class="text-xl">Account</h1> -->
     <div class="flex flex-col justify-center items-center p-8 ccx">
-      <v-avatar size="150">
-        <v-img
-          src="https://image-service-cdn.seek.com.au/273ca43145e5622f410685098e689617a3b497f2/ee4dce1061f3f616224767ad58cb2fc751b8d2dc"
+
+      <v-avatar size="150" color="blue">
+        <v-img v-if="office.image"
+          :src="$url+office.image"
           alt=""
         >
         </v-img>
+        <span class="text-white" v-else>{{office.name}}</span>
       </v-avatar>
-      <h2 class="font-semibold text-xl mt-2">THAI UNION GROUP PCL.</h2>
+      <h2 class="font-semibold text-xl mt-2">{{office.name}}</h2>
       <br />
       <br />
       <br />
@@ -56,6 +58,11 @@ export default {
     dialog4: false,
     dialog5: false,
   }),
+  computed: {
+    office() {
+      return this.$auth.myOffice;
+    },
+  },
 };
 </script>
 
