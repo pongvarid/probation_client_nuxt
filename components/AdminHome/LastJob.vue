@@ -37,7 +37,7 @@
 
         <v-divider class="mx-4"></v-divider> 
         <v-card-actions>
-            <v-chip small @click="$router.push(`/admin/jobbookmark/`)"><v-icon>mdi-bookmark</v-icon> {{job.bookmark}} </v-chip>
+            <v-chip small @click="$router.push(`/admin/bookmark/${job.id}/`)"><v-icon>mdi-bookmark</v-icon> {{job.bookmark}} </v-chip>
           <v-chip class="ml-2" small ><v-icon>mdi-eye</v-icon> {{job.views}}</v-chip>
                 <v-spacer></v-spacer>
 

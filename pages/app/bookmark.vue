@@ -101,8 +101,9 @@ export default {
               `success`,
               `ลบ Bookmark ของคุณเรียบร้อยแล้ว`
             );
-            await this.run();
+
             await this.$auth.setUser();
+            await this.run();
           } else {
             await this.$web.alert(
               `ลบข้อมูลไม่สำเร็จ`,
