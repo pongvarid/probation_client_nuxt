@@ -16,7 +16,7 @@
             <div class="ml-4">
               <div>ชื่อ: {{bookmark.name}}</div>
               <div>อายุ: {{bookmark.age}} ปี</div>
-              <div>ความสามารถ:   <v-chip v-for="skill, k in bookmark.skill" small  class="m-1">#{{skill.name}}</v-chip>
+              <div>ความสามารถ:   <v-chip v-for="skill, k in bookmark.skill" :key="k" small  class="m-1">#{{skill.name}}</v-chip>
               </div>
             </div>
           </div>

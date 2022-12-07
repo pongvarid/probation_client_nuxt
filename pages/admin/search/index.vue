@@ -20,7 +20,7 @@
             <div class="ml-4">
               <div>ชื่อ: {{user.first_name}} {{user.last_name}}</div>
               <div>อายุ: {{user.age}} ปี</div>
-              <div>ความสามารถ:   <v-chip v-for="skill, k in user.skills" small  class="m-1">#{{skill.name}}</v-chip>
+              <div>ความสามารถ:   <v-chip v-for="skill, k in user.skills" :key="k" small  class="m-1">#{{skill.name}}</v-chip>
               </div>
             </div>
           </div>
