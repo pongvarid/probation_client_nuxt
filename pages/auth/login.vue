@@ -48,8 +48,10 @@
         block
         @click="$router.push(`/auth/adminlogin/`)"
         color="primary"
-        >เข้าสู่ระบบผู้ประกอบการ</v-btn
-      >
+        >เข้าสู่ระบบผู้ประกอบการ</v-btn >
+
+<!--      <v-btn @click="aacat()">ddd</v-btn>-->
+
     </div>
   </div>
 </template>
@@ -74,6 +76,21 @@ export default {
         await this.$auth.login(this.form);
       }
     },
+    async aacat(){
+
+      let dd = this.$_.map(this.$categories, 'name')
+      dd.forEach(async(r)=>{
+        let cat  = await this.$core.postHttp(`/api/job/category/`,{
+          name: r
+        })
+        if(cat.id){
+          let aa  = await this.$core.postHttp(`/api/job/sub-category/`,{
+            name: r,
+            "category": cat.id
+          })
+        }
+      })
+    }
   },
 };
 </script>

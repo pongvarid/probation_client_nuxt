@@ -1,6 +1,6 @@
 const env = {
     title:"Website",
-    host:"http://223.204.70.113:8000",
+    host:"https://admin-findwork.pongvarid.com",
     web:"http://localhost:3000" 
   
 }
