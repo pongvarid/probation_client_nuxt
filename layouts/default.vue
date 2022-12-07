@@ -14,6 +14,13 @@ export default {
   }),
   async created() {
     await this.$auth.checkUserLogin();
+    try {
+      if(this.$auth.user.is_employer){
+        await this.$router.replace('/admin/');
+      }
+    }catch (e) {
+      console.log(e);
+    }
     this.response = true;
 
   },

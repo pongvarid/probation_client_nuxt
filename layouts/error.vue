@@ -28,6 +28,14 @@ export default {
       otherError: 'An error occurred'
     }
   },
+  async mounted () {
+    await this.run()
+  },
+  methods:{
+    async run(){
+      await this.$auth.checkUserLogin();
+    }
+  },
   head () {
     const title =
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError

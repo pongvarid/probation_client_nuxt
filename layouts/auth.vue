@@ -14,6 +14,7 @@ export default {
   methods: {
     async run(){
       await this.$auth.checkUserLogin();
+
     }
   }
 

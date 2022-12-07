@@ -72,24 +72,7 @@
                         </v-tab>
                         <v-tab-item>
                             <div>
-                                <v-divider></v-divider>
-                                <div @click="dialog=true">
-                                    <Core-ListMenu head="ข้อกำหนดและเงื่อนไข" txt=" " icon="mdi-arrow-right"></Core-ListMenu>
-                                </div>
-                                <v-divider></v-divider>
-                                <div @click="dialog2=true">
-                                    <Core-ListMenu head="นโยบายความเป็นส่วนตัว" txt=" " icon="mdi-arrow-right"></Core-ListMenu>
-                                </div>
-                                <v-divider></v-divider>
-                                <div @click="dialog5=true">
-                                    <Core-ListMenu head="ติดต่อเรา" txt=" " icon="mdi-arrow-right"></Core-ListMenu>
-                                </div>
-                                <v-divider></v-divider>
-                                <Core-ListMenu head="เวอร์ชัน" txt="0.1a"></Core-ListMenu>
-                                <v-divider></v-divider>
-                                <div class="p-2">
-                                    <v-btn depressed block color="error" large class="mt-6 " @click="$router.push('/auth/login/')">ออกจากระบบ</v-btn>
-                                </div>
+                                <App-Info></App-Info>
                             </div>
                         </v-tab-item>
                     </v-tabs>

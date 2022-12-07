@@ -137,8 +137,12 @@ class AuthModule extends VuexModule {
             console.log(`[AUTH]`, `LOGIN-CHECK`, "INTOKEN");
             if (user) { 
                 let path = Vue.prototype.$currentPathName() 
-                if (path == 'auth-login' || path == 'auth-register' || path == 'auth-forgot'  ) {
-                    await Vue.prototype.$go(`/app/`)
+                if (path == 'auth-login' || path == 'auth-register' || path == 'auth-forgot' ||path == 'auth-adminlogin'  ) {
+                    if(user.is_employer){
+                        await Vue.prototype.$go(`/admin/`)
+                    } else{
+                        await Vue.prototype.$go(`/app/`)
+                    }
                 }
             } else {
                 await this.logout()
