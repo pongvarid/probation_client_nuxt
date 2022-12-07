@@ -4,34 +4,34 @@
         <h2 class="text-xl font-semibold">งานที่บันทึกไว้ </h2>
      
     </div>
-  <pre>
-    {{bookmarks}}
-  </pre>
-    <v-card class="mx-auto mt-4" max-width="374" v-for="job,index in data" :key="index" @click="$router.push(`/app/search/detail/`)">
+
+    <v-card class="mx-auto mt-4" max-width="374" v-for="job,index in bookmarks" :key="index" @click="$router.push(`/app/search/${job.job}/`)">
         <template slot="progress">
             <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
         </template>
 
-        <v-img contain height="150" :src="job.bannerUrl"></v-img>
 
-        <v-card-title>{{job.jobTitle}}</v-card-title>
+        <v-img contain height="150" :src="$url+job.image"></v-img>
+
+        <v-card-title>{{job.name}}</v-card-title>
 
         <v-card-text>
-            <v-divider class="mt-2"></v-divider>
-            <div class="my-4 text-subtitle-1">
-                <div class="flex h-full items-center">
-                    <img class="h-auto w-16  mr-2" :src="job.com_logo" alt="">
-                    <span class="text-xs">{{job.com_name}}</span>
-                </div>
+          <v-divider class="mt-2"></v-divider>
+          <div class="my-4 text-subtitle-1">
+            <div class="flex h-full items-center">
+              <img class="h-auto w-16  mr-2" :src="$url+job.office_data.image" alt="">
+              <span class="text-xs">{{job.office_data.name}}</span>
             </div>
-            <div>{{job.description}}</div>
+          </div>
+          <div>{{job.content}}</div>
         </v-card-text>
 
         <v-divider class="mx-4"></v-divider>
         <div class="flex">
-            <v-spacer></v-spacer>
-            <span class="mr-6 text-xs p-2"> {{job.postingDuration}}</span>
+          <v-spacer></v-spacer>
+          <span class="mr-6 text-xs p-2">{{$kit.dateTH(job.bookmark_add)}}</span>
         </div>
+
 
     </v-card>
 
@@ -50,7 +50,10 @@ export default {
     },
   methods:{
       async run(){
-        this.bookmarks =  this.$auth.myBookMark
+        let bookmarks = this.$_.map(this.$auth.myBookMark,(r)=>{
+          return {...r.job_data,"bookmark_id":r.id, "bookmark_add":r.created_at}
+        })
+        this.bookmarks =  bookmarks
       }
   }
 }

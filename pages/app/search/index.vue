@@ -3,10 +3,11 @@
     <div class="p-4 sbg">
         <h2 class="text-xl font-semibold">ค้นหางานที่ใช่ในแบบคุณ </h2>
         <v-form class="mt-6">
-            <v-text-field dense solo label="ชื่อตำแหน่ง คีย์เวริด หรือ ชื่อบริษัท" placeholder="ชื่อตำแหน่ง คีย์เวริด หรือ ชื่อบริษัท" id="id"></v-text-field>
-            <v-autocomplete dense solo label="จังหวัด" :items="['พะเยา',]"></v-autocomplete>
-            <v-autocomplete dense solo label="ประเภทของงาน" :items="$categories" item-text="name" item-value="code"></v-autocomplete>
+            <v-text-field @input="run()" v-model="search" dense solo label="ชื่อตำแหน่ง คีย์เวริด หรือ ชื่อบริษัท" placeholder="ชื่อตำแหน่ง คีย์เวริด หรือ ชื่อบริษัท" id="id"></v-text-field>
+            <v-autocomplete v-model="province" @input="run()"  dense solo label="จังหวัด" :items="$provinces"></v-autocomplete>
+            <v-autocomplete v-model="category"  @input="run()"  dense solo label="ประเภทของงาน" :items="[{id:null,name:'ทั้งหมด'},...$auth.categories]" item-text="name" item-value="id"></v-autocomplete>
         </v-form>
+
     </div>
     <div class="p-4 mbg">
         <h1 class="font-semibold text-xl">รายการค้นหา</h1>
@@ -32,6 +33,7 @@
 
         <v-divider class="mx-4"></v-divider>
         <v-card-actions>
+          <span class="text-xs">{{$kit.dateTH(job.created_at)}}</span>
           <v-spacer></v-spacer>
           <v-chip small ><v-icon>mdi-eye</v-icon> {{job.views}}</v-chip>
         </v-card-actions>
@@ -44,9 +46,20 @@
 export default {
     data: () => ({
         data: [],
+      province:'ทั้งหมด',
+      category:null,
+      search:'',
     }),
     async created() {
-        this.data = await this.$core.getHttp(`/api/job/job-detail/`)
+      await this.run()
+    },
+    methods:{
+      async run(){
+        let province = (this.province != 'ทั้งหมด')?`&office__province=${this.province}`:``
+        let category = (this.category)?`&category=${this.category}`:``
+        let search = (this.search)?`&search=${this.search}`:``
+        this.data = await this.$core.getHttp(`/api/job/job-detail/?is_active=true${province}${category}${search}`)
+      }
     }
 }
 </script>

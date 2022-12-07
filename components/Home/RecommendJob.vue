@@ -11,10 +11,10 @@
 
         <v-card-text> 
             <v-divider class="mt-2"></v-divider> 
-            <div class="my-4 text-subtitle-1" v-if="job.office">
+            <div class="my-4 text-subtitle-1" v-if="job.office_data">
                <div class="flex h-full items-center"> 
-                <img class="h-10  mr-2" :src="job.office.image" alt="">
-                <span class="text-xs">{{job.name}}</span>
+                <img class="h-10  mr-2" :src="$url+job.office_data.image" alt="">
+                <span class="text-xs">{{job.office_data.name}}</span>
                </div>
             </div> 
             <div>{{job.content}}</div>
@@ -22,6 +22,7 @@
 
         <v-divider class="mx-4"></v-divider>
         <v-card-actions>
+              <span class="text-xs">{{$kit.dateTH(job.created_at)}}</span>
                 <v-spacer></v-spacer>
                 <v-chip small ><v-icon>mdi-eye</v-icon> {{job.views}}</v-chip>
             </v-card-actions>

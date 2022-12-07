@@ -57,3 +57,7 @@ Vue.prototype.$jobs = _.map(data.jobs, (r, ondex) => {
 let cats = _.map(data.jobs, 'categories') 
 Vue.prototype.$categories = _.uniq(_.flatten(cats))
 Vue.prototype.$job = detail.detail
+
+import province from '@/assets/data/province.json'
+
+Vue.prototype.$provinces = province.provinces

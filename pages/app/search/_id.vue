@@ -11,7 +11,7 @@
       </v-btn>
     </v-toolbar>
 
-    <img src="https://image-service-cdn.seek.com.au/bd520ed0973dbc871079a9e3c04da6e0d1f6b8f9/a868bcb8fbb284f4e8301904535744d488ea93c1" alt="">
+    <img v-if="job.image" :src="job.image" alt="">
     <h2 class="text-xl ml-4 mr-4 mt-4">{{job.name}}</h2>
     <span class="ml-4 mt-2">{{$kit.dateTH(job.created_at)}}</span>
     <v-divider></v-divider>
@@ -55,6 +55,7 @@ export default {
     async run(){
       this.job = await this.$core.getHttp(`/api/job/job-detail/${this.$route.params.id}/`)
       this.check = await this.$auth.getExistBookMark(this.job.id)
+      await this.storeView()
     },
     async addBookMark(){
       let check = await this.$auth.getExistBookMark(this.job.id)
@@ -66,6 +67,13 @@ export default {
           await this.run()
         }
       }
+    },
+    async storeView(){
+       try {
+         await this.$core.putHttp(`/api/job/job-detail/${this.$route.params.id}/`,{views:this.job.views+1})
+       }catch (e){
+         console.log(e)
+       }
     }
   }
 }
