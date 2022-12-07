@@ -17,12 +17,20 @@ class AuthModule extends VuexModule {
     * @point Custom Variable สำหรับเก็บข้อมูล user ลงใน store
     */ 
     public data:any = {}
+    public categories:any = []
+    public subCategories:any = []
+
+    public myBookMark:any = []
+
     /**
     * @point สำหรับรันเมื่อ login สำเร็จ และ สามารถโยนข้อมูล user เข้าไปใน method นี้ได้เลย
     */
     public async getThenLogin(user: any) {
-    
- 
+
+        await this.getCategory()
+        await this.getSubCategory()
+        await this.getMyBookMark()
+
     }
 
     /**
@@ -155,7 +163,58 @@ class AuthModule extends VuexModule {
         } catch (error) {
             await location.reload()
         }
+    }
 
+
+    public async getCategory(){
+       try {
+           let res = await Core.getHttp(`/api/job/category/`)
+           this.categories = res
+           return res
+       }catch (error) {
+           console.log('getCategory',error);
+           return []
+       }
+    }
+    public async getSubCategory(){
+      try {
+          let res = await Core.getHttp(`/api/job/sub-category/`)
+          this.subCategories = res
+          return res
+      }catch (error) {
+          console.log('getSubCategory',error);
+          return []
+      }
+    }
+    public async getSubCategoryByCategory(category_id:any){
+        try {
+            let res = await Core.getHttp(`/api/job/sub-category/?category=${category_id}`)
+            return res
+        }catch (error) {
+            console.log('getSubCategoryByCategory',error);
+            return []
+        }
+    }
+
+    public async getMyBookMark(){
+        try {
+            let res = await Core.getHttp(`/api/account/user-bookmark/?user=${this.user.id}`)
+            this.myBookMark = res
+            return res
+        }catch (error) {
+            console.log('getBookMark',error);
+            return []
+        }
+    }
+
+    public async getExistBookMark(job_id:any){
+        try {
+            let check = _.find(this.myBookMark, {job:job_id})
+            return (check.id)?false:true
+        }catch (error) {
+            console.log('getExistBookMark',error);
+            return true
+        }
     }
 
     

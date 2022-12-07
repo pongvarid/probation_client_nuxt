@@ -150,9 +150,6 @@ class CoreModule extends VuexModule {
 
 
 
-
-
-
 }
 
 import store from "@/vuexes" 

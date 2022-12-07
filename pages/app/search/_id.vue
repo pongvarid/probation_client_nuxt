@@ -4,9 +4,9 @@
       <v-btn @click="$router.go(-1)" fab x-small outlined>
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
-      <span class="ml-2 text-xl"> {{job.name}}</span>
+      <div class="ml-2 text-box text-xl"> {{job.name}}</div>
       <v-spacer></v-spacer>
-      <v-btn fab small outlined color="orange">
+      <v-btn v-if="check" @click="addBookMark" fab small outlined color="orange">
         <v-icon>mdi-bookmark</v-icon>
       </v-btn>
     </v-toolbar>
@@ -44,14 +44,40 @@
 export default {
   data: () => ({
     dialog: true,
-    job: {}
+    job: {},
+    check: false,
   }),
   async created() {
-    this.job = await this.$core.getHttp(`/api/job/job-detail/${this.$route.params.id}/`)
+    await this.run()
+  },
+
+  methods:{
+    async run(){
+      this.job = await this.$core.getHttp(`/api/job/job-detail/${this.$route.params.id}/`)
+      this.check = await this.$auth.getExistBookMark(this.job.id)
+    },
+    async addBookMark(){
+      let check = await this.$auth.getExistBookMark(this.job.id)
+      if(check){
+        let add = await this.$core.postHttp(`/api/account/user-bookmark/`,{job:Number(this.$route.params.id),user:Number(this.$auth.user.id)})
+        if(add.id){
+          await this.$web.alert(`เพิ่มรายการโปรดเรียบร้อย`, `success`)
+          await this.$auth.setUser()
+          await this.run()
+        }
+      }
+    }
   }
 }
 </script>
 
 <style>
-
+.text-box {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
 </style>

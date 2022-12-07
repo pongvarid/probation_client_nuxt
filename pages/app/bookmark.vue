@@ -3,7 +3,10 @@
     <div class="p-4  ">
         <h2 class="text-xl font-semibold">งานที่บันทึกไว้ </h2>
      
-    </div> 
+    </div>
+  <pre>
+    {{bookmarks}}
+  </pre>
     <v-card class="mx-auto mt-4" max-width="374" v-for="job,index in data" :key="index" @click="$router.push(`/app/search/detail/`)">
         <template slot="progress">
             <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
@@ -40,13 +43,16 @@
 <script>
 export default {
     data: () => ({
-        data: [],
+        bookmarks:[],
     }),
     async created() {
-        this.data = this.$_.filter(this.$jobs, (job, index) => {
-            return index <= 1
-        })
-    }
+        await this.run()
+    },
+  methods:{
+      async run(){
+        this.bookmarks =  this.$auth.myBookMark
+      }
+  }
 }
 </script>
     
