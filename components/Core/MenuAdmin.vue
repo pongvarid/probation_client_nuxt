@@ -10,7 +10,7 @@
             <span>หาคน</span>
             <v-icon>mdi-card-search</v-icon>
         </v-btn>
-        <v-btn color="white" @click="$router.push(`/admin/bookmark/`)">
+        <v-btn color="white" @click="$router.push(`/admin/bookmark/list/`)">
             <span>บุ๊คมาร์ค</span>
             <v-icon>mdi-bookmark</v-icon>
         </v-btn>

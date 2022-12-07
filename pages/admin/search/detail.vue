@@ -27,15 +27,16 @@
             </v-tab>
             <v-tab-item>
                 <div class="p-4">
+                  <div>
                     <h2>ข้อมูลส่วนตัว</h2><br>
-                    <v-text-field dense readonly outlined value="นางสาวเอ" label="ชื่อ" id="id"></v-text-field>
-                    <v-text-field dense readonly outlined value="นามสมมุติ" label="นามสกุล" id="id"></v-text-field>
-                    <v-text-field dense readonly outlined value="17-08-2541" label="วัน/เดือน/ปี เกิด" id="id"></v-text-field>
-                    <v-text-field dense readonly outlined value="24" label="อายุ" id="id"></v-text-field>
-                    <v-text-field dense readonly outlined value="หญิง" label="เพศ" id="id"></v-text-field>
+                    <v-text-field :value="`${user.first_name} ${user.last_name}`" dense readonly outlined  label="ชื่อ" id="id"></v-text-field>
+                    <v-text-field :value="`${user.birth_date}`"  dense readonly outlined  type="date" label="วัน/เดือน/ปี เกิด" id="id"></v-text-field>
+                    <v-text-field dense readonly outlined :value="`${user.age}`"label="อายุ" id="id"></v-text-field>
+                    <v-text-field dense readonly outlined :value="`${user.gender}`"label="เพศ" id="id"></v-text-field>
                     <h2>ข้อมูลการติดต่อ</h2><br>
-                    <v-text-field dense readonly outlined value="0874456689" label="เบอร์โทร" id="id"></v-text-field>
-                    <v-text-field dense readonly outlined value="445 ม.14 ต.แม่กา อ.เมืองพะเยา จ.พะเยา" label="ที่อยู่" id="id"></v-text-field>
+                    <v-text-field dense readonly outlined :value="`${user.phone_number}`" label="เบอร์โทร" id="id"></v-text-field>
+                    <v-text-field dense readonly outlined  :value="`${user.address}`" label="ที่อยู่" id="id"></v-text-field>
+                  </div>
 
                 </div>
             </v-tab-item>

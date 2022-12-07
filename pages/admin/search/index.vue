@@ -3,43 +3,33 @@
     <div class="p-4 sbg">
         <h2 class="text-xl font-semibold">ค้นหาบุคคลที่จะมาทำงานให้คุณ </h2>
         <v-form class="mt-6">
-              <v-autocomplete dense solo label="จังหวัด" :items="['พะเยา',]"></v-autocomplete>
-        <v-autocomplete dense solo label="ความสามารถ" :items="['งานช่าง','แม่บ้าน','ครู']"></v-autocomplete>
+          <v-autocomplete v-model="category"  @input="run()"   dense solo label="ประเภทของงาน" :items="[{id:null,name:'ทั้งหมด'},...$auth.categories]" item-text="name" item-value="id"></v-autocomplete>
+          <v-autocomplete   v-model="subcategory" solo dense :items="[{id:null,name:'ทั้งหมด'},...$auth.getSubCategoryByCategory(category)]" item-text="name" item-value="id" label="ประเภทของงาน"></v-autocomplete>
         </v-form>
     </div>
     
     
     <div class="p-4">
-        <v-card outlined @click="$router.push(`/admin/search/detail/`)">
-            <v-card-text>
-                <div class="flex items-center">
-                    <v-avatar size="80" >
-                        <img src="https://scontent.fcnx3-1.fna.fbcdn.net/v/t1.6435-9/148118814_1376793679324214_1244265604538678512_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=pAmN7IOn38UAX-eQcZs&_nc_ht=scontent.fcnx3-1.fna&oh=00_AfAU17UQmBErYgGqGqobV6h7KbME8dw-12f6pZ0Cf9DJWQ&oe=63934A24" alt="">
-                    </v-avatar>
-                    <div class="ml-4"> 
-                        <div>ชื่อ: นางสาวเอ นามสมมุติ</div>
-                        <div>อายุ: 24 ปี</div>
-                        <div>ความสามารถ:   <v-chip  small  class="m-1">#งานสวน</v-chip> 
-                        <v-chip  small  class="m-1">#งานธุรการ</v-chip> </div>
-                    </div>
-                </div>
-            </v-card-text>
-        </v-card>
-        <v-card outlined class="mt-7">
-            <v-card-text>
-                <div class="flex items-center">
-                    <v-avatar size="80" >
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFnG0huY6whcqQtmgJDP7XgSb8VCpmLUnKXw&usqp=CAU" alt="">
-                    </v-avatar>
-                    <div class="ml-4"> 
-                        <div>ชื่อ: นายบี มีสกุล</div>
-                        <div>อายุ: 24 ปี</div>
-                        <div>ความสามารถ:   <v-chip  small  class="m-1">#งาน IT</v-chip> 
-                        <v-chip  small  class="m-1">#งานฝีมือ</v-chip>  <v-chip  small  class="m-1">#ช่างไฟ</v-chip>  </div>
-                    </div>
-                </div>
-            </v-card-text>
-        </v-card>
+      <v-card outlined class="mt-4" @click="$router.push(`/admin/search/${user.id}/`)" v-for="user,i in data" :key="i">
+        <v-card-text>
+          <div class="flex items-center">
+            <v-avatar size="80" >
+              <v-img v-if="user.image_profile" :src="user.image_profile" ></v-img>
+              <span v-else>ผู้ใช้</span>
+            </v-avatar>
+            <div class="ml-4">
+              <div>ชื่อ: {{user.first_name}} {{user.last_name}}</div>
+              <div>อายุ: {{user.age}} ปี</div>
+              <div>ความสามารถ:   <v-chip v-for="skill, k in user.skills" small  class="m-1">#{{skill.name}}</v-chip>
+              </div>
+            </div>
+          </div>
+        </v-card-text>
+      </v-card>
+
+
+
+
     </div>
 </div>
 </template>
@@ -49,10 +39,26 @@ export default {
     layout: 'admin',
     data: () => ({
         data: [],
+      province:'ทั้งหมด',
+      category:null,
+      subcategory:null,
     }),
     async created() {
-        this.data = this.$jobs
-    }
+        await this.run();
+    },
+  methods:{
+      async run()
+      {
+        if(this.category == null){
+          this.subcategory = null
+        }
+        let category = (this.category)?`&skill__category=${this.category}`:``
+        let subcategory = (this.subcategory)?`&skill=${this.subcategory}`:``
+
+        this.data = await this.$core.getHttp(`/api/account/userprofile/?is_probation=true${category}${subcategory}`)
+      }
+
+  }
 }
 </script>
 
