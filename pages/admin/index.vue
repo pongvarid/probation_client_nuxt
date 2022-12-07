@@ -13,7 +13,6 @@
         </div>
         <Home-Slide></Home-Slide>
     </div>
- 
 
     <AdminHome-LastJob></AdminHome-LastJob>
     

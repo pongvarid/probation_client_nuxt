@@ -13,6 +13,8 @@ class AuthModule extends VuexModule {
     private token: any = localStorage.getItem('token')
     public user: any = null
 
+    public myOffice:any = null
+
     /**
     * @point Custom Variable สำหรับเก็บข้อมูล user ลงใน store
     */ 
@@ -31,6 +33,9 @@ class AuthModule extends VuexModule {
         await this.getSubCategory()
         await this.getMyBookMark()
 
+        if(this.user.is_employer) {
+            await this.setOffice()
+        }
     }
 
     /**
@@ -190,9 +195,9 @@ class AuthModule extends VuexModule {
           return []
       }
     }
-    public async getSubCategoryByCategory(category_id:any){
+    public  getSubCategoryByCategory(category_id:any){
         try {
-            let res = await Core.getHttp(`/api/job/sub-category/?category=${category_id}`)
+            let res = _.filter(this.subCategories, {category: category_id})
             return res
         }catch (error) {
             console.log('getSubCategoryByCategory',error);
@@ -220,6 +225,16 @@ class AuthModule extends VuexModule {
             return true
         }
     }
+
+
+    public async setOffice(){
+        if(this.user.office){
+            this.myOffice = this.user.office
+        }
+    }
+
+
+
 
     
   

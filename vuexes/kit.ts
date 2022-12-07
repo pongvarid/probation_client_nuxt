@@ -44,7 +44,7 @@ class KitModule extends VuexModule {
 /**
 * @point async function for get data tool 
 */
-    async generateCodeId(code: string = 'EF') {
+    async generateCodeId(code: string = 'LE') {
         return code + moment().format('DDMMYYYYHHmmss');
     } 
     async getBase64(file: any) {

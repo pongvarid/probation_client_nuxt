@@ -54,6 +54,9 @@ export default {
           return {...r.job_data,"bookmark_id":r.id, "bookmark_add":r.created_at}
         })
         this.bookmarks =  bookmarks
+
+
+
       }
   }
 }
