@@ -12,8 +12,11 @@
     </v-toolbar>
 
     <img v-if="job.image" :src="job.image" alt="">
+
     <h2 class="text-xl ml-4 mr-4 mt-4">{{job.name}}</h2>
     <span class="ml-4 mt-2">{{$kit.dateTH(job.created_at)}}</span>
+
+
     <v-divider></v-divider>
     <div class="flex items-center p-4" @click="$router.push(`/app/office/${job.office_data.id}/`)" v-if="job.office_data">
       <img v-if="job.office_data.image" class="h-10" :src="$url+job.office_data.image" alt="">
@@ -27,7 +30,13 @@
     </div>
 
     <div class="p-4">
-      <h2>รายละเอียดงาน</h2>
+
+      <div class="w-full flex">
+        <h2 class="font-semibold">รายละเอียดงาน</h2>
+        <v-spacer></v-spacer>
+        <v-chip v-if="job.approve"  color="success" class="m-2"  small><v-icon size="20" class="mr-2">mdi-check-circle</v-icon> ยินดีรับผู้เคยถูกดำเนินคดี</v-chip>
+      </div>
+
       <div class="mt-4" v-html="job.detail"></div>
 
       <div class="bg-green-100 rounded p-2 m-2" v-if="job.office">
