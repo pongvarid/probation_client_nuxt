@@ -18,7 +18,7 @@
         ></v-progress-linear>
       </template>
 
-      <v-img contain height="150" :src="$url + job.image"></v-img>
+      <v-img   height="150" :src="$url + job.image"></v-img>
 
       <v-card-title>{{ job.name }}</v-card-title>
 

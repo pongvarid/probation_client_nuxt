@@ -3,7 +3,7 @@
     
     <v-slide-group class="pa-4" active-class="success">
         <v-slide-item v-for="company,index in companies" :key="index" v-slot="{ active, toggle }" class="w-full">
-            <v-card outlined class="ma-2" height="100" width="100" >
+            <v-card  @click="$router.push(`/app/office/${company.id}/`)"  outlined class="ma-2" height="100" width="100" >
                 <div class="p-2 flex flex-col w-full h-full justify-center ">
                     <img class="w-auto" :src="company.image" alt="">
                 </div>

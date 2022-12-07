@@ -51,6 +51,9 @@ export default {
       search:'',
     }),
     async created() {
+      if(this.$route.query.category){
+        this.category = Number(this.$route.query.category)
+      }
       await this.run()
     },
     methods:{

@@ -15,9 +15,9 @@
     <h2 class="text-xl ml-4 mr-4 mt-4">{{job.name}}</h2>
     <span class="ml-4 mt-2">{{$kit.dateTH(job.created_at)}}</span>
     <v-divider></v-divider>
-    <div class="flex items-center p-4" @click="$router.push(`/admin/account/view/`)" v-if="job.office">
-      <img class="h-10" :src="job.office.image" alt="">
-      <span  class="text-xs ml-2">{{job.office.name}}</span>
+    <div class="flex items-center p-4" @click="$router.push(`/app/office/${job.office_data.id}/`)" v-if="job.office_data">
+      <img v-if="job.office_data.image" class="h-10" :src="$url+job.office_data.image" alt="">
+      <span  class="text-xs ml-2">{{job.office_data.name}}</span>
     </div>
     <v-divider></v-divider>
     <div class="bg-purple-100 rounded p-2 m-2">

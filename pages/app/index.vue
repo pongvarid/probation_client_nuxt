@@ -23,7 +23,7 @@
     <div class="p-5 ">
         <h2 class="text-base font-semibold">งานแนะนำ</h2><br>
         <div class="flex flex-wrap">
-            <v-chip v-for="skill,i in skills" :key="i" v-if="i < 6" @click="$router.push(`/app/search/?skill=${skill.id}`)" class="m-1">#{{skill.name}}</v-chip>
+            <v-chip v-for="skill,i in skills" :key="i" v-if="i < 6" @click="$router.push(`/app/search/?category=${skill.id}`)" class="m-1">#{{skill.name}}</v-chip>
         </div>
         <Home-RecommendJob></Home-RecommendJob>
     </div>
