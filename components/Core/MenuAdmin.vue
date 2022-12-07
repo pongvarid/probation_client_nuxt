@@ -1,5 +1,5 @@
 <template>
-<v-bottom-navigation fixed>
+<v-bottom-navigation fixed style="z-index:9999;">
     <div class="w-full flex justify-center items-center">
         <v-btn color="white" @click="$router.push(`/admin/`)">
             <span>หน้าหลัก</span>
