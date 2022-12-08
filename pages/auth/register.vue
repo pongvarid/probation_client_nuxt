@@ -69,7 +69,7 @@ export default {
         async register() {
           if(this.$refs.vform.validate()){
             if(this.form.password_confirm == this.form.password){
-              let reg = await this.$auth.register({...this.form,is_employer:true,firsname:"Admin",lastname:this.formCom.name,display_name:this.formCom.name})
+              let reg = await this.$auth.register({...this.form,is_employer:true,first_name:"Admin",last_name:this.formCom.name,display_name:this.formCom.name})
               if(reg.id){
                 this.formCom.user = reg.id
                 let com = await this.$core.postHttp('/api/job/office/',this.formCom)
