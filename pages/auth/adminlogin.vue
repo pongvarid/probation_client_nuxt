@@ -1,12 +1,12 @@
 <template>
-  <div class="llbg">
+  <div class="w-full container mx-auto px-4  h-full flex flex-col justify-center items-center llbg"  >
     <center>
       <img class="w-60" src="@/assets/images/006-jobs.png" alt="" />
       <h2 class="font-semibold text-2xl mt-4">คุมประพฤติ</h2>
       <span class="font-semibold">ยินดีต้อนรับ ผู้ประกอบการ</span>
     </center>
-    <div class="p-4">
-      <v-card outlined>
+    <div class="p-4"  :class="($vuetify.breakpoint.width > 700  )?`w-6/12`:` w-full`">
+      <v-card  >
         <v-card-text>
           <span>
             หากคุณยังไม่ได้เป็นสมาชิก กรุณา
@@ -43,7 +43,7 @@
       ><br />
       <v-divider></v-divider><br />
       <v-btn
-        outlined
+
         class="mt-6"
         depressed
         block

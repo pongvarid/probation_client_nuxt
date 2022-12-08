@@ -1,5 +1,5 @@
 <template>
-  <div class="llbg">
+  <div class="w-full container mx-auto px-4  h-full flex flex-col justify-center items-center  llbg"  >
     <center>
       <img class="w-60" src="@/assets/images/007-jobs.png" alt="" />
       <h2 class="font-semibold text-2xl mt-4">คุมประพฤติ</h2>
@@ -7,7 +7,7 @@
         >ยินดีต้อนรับ ระบบจัดหางานผู้ถูกคุมประพฤติ</span
       >
     </center>
-    <div class="p-4">
+    <div class="p-4"  :class="($vuetify.breakpoint.width > 700 )?`w-6/12`:` w-full`">
       <v-card outlined>
         <v-card-text>
           <v-form ref="vform">
@@ -43,11 +43,11 @@
       <v-divider></v-divider><br />
       <v-btn
         class="mt-6"
-        outlined
         depressed
         block
         @click="$router.push(`/auth/adminlogin/`)"
-        color="primary"
+        dark
+        color="purple"
         >เข้าสู่ระบบผู้ประกอบการ</v-btn >
 
 <!--      <v-btn @click="aacat()">ddd</v-btn>-->

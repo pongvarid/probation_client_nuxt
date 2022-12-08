@@ -1,13 +1,13 @@
 <template>
-<div>
-    <center>
+<div class="w-full container mx-auto px-4  h-full flex flex-col justify-center items-center   llbg"  >
+    <center class="w-full">
         <img class="w-40" src="@/assets/images/006-jobs.png" alt="">
         <h2 class="font-semibold text-2xl mt-4">คุมประพฤติ</h2>
         <span class="font-semibold">สมัครสมาชิกผู้ประอบการ </span>
     </center>
-    <div class="p-4">
-        <v-card outlined>
-            <v-card-text>
+    <div class="p-4"  :class="($vuetify.breakpoint.width > 700 )?`w-6/12`:` w-full`">
+        <v-card  >
+            <v-card-text >
                 <v-form ref="vform">
                     <v-text-field :rules="[$v.req]" v-model="form.username" dense outlined label="ชื่อผู้ใช้"></v-text-field>
                     <v-text-field :rules="[$v.req]"  v-model="form.password" dense type="password" outlined label="รหัสผ่าน"></v-text-field>
@@ -22,7 +22,7 @@
             </v-card-text>
         </v-card>
         <v-divider></v-divider><br>
-        <v-btn outlined class="mt-6" depressed block @click="$router.push(`/auth/adminlogin/`)" color="primary">กลับไปหน้าเข้าสู่ระบบ</v-btn>
+        <v-btn   class="mt-6" depressed block @click="$router.push(`/auth/adminlogin/`)" color=" ">กลับไปหน้าเข้าสู่ระบบ</v-btn>
 
     </div>
 
@@ -88,5 +88,5 @@ export default {
 </script>
 
 <style>
-    
+
     </style>

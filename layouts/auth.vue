@@ -1,7 +1,7 @@
 <template>
-  <v-app>
-    <v-main >
-        <nuxt class="pb-20" />    
+  <v-app >
+    <v-main class="bghhhP">
+        <nuxt class="pb-20 " />
     </v-main> 
 </v-app>
 </template>
