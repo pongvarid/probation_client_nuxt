@@ -34,7 +34,8 @@
                   <span class="text-xs">{{job.office_data.name}}</span>
                 </div>
               </div>
-              <div class="text-limit ">{{job.content}}</div>
+              <v-chip small color="info">{{job.category_name}}</v-chip>
+              <div class="text-limit mt-1">{{job.content}}</div>
             </v-card-text>
             <v-card-actions >
               <div class="flex h-full items-end">

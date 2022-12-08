@@ -1,8 +1,10 @@
 <template>
   <div class=" ">
     <div class="p-4 gghP  h-60">
-      <div class="container mx-auto  bbg h-full w-full" >
-        <h2 class="text-xl font-semibold">งานที่บันทึกไว้</h2>
+      <div class="w-full container mx-auto   ">
+        <div class="container mx-auto  bbg h-full w-full" >
+          <h2 class="text-xl font-semibold">งานที่บันทึกไว้</h2>
+        </div>
       </div>
     </div>
 

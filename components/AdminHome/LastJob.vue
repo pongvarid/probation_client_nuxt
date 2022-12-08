@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <v-toolbar color="transparent" flat class="mt-4">
       <h2 class="font-semibold text-xl">งานของฉัน</h2>
       <v-spacer></v-spacer>
@@ -8,59 +8,63 @@
       >
     </v-toolbar>
 
-    <v-card
-      class="mx-auto mt-4"
-      max-width="374"
-      v-for="(job, index) in data"
-      :key="index"
-    >
-      <template slot="progress">
-        <v-progress-linear
-          color="deep-purple"
-          height="10"
-          indeterminate
-        ></v-progress-linear>
-      </template>
-      <div>
-        <div class="absolute w-full">
-          <div class="flex p-2">
-            <v-spacer></v-spacer>
-          </div>
+    <div :class="($vuetify.breakpoint.width > 700 )?`w-full flex flex-wrap justify-center`:`flex flex-col w-full items-center`">
+
+        <div class="p-1"   :class="($vuetify.breakpoint.width > 700 )?`w-300`:``"    v-for="(job, index) in data" :key="index" >
+
+          <v-card
+              :width="($vuetify.breakpoint.width > 700 )?300:350"
+
+          >
+            <template slot="progress">
+              <v-progress-linear
+                  color="deep-purple"
+                  height="10"
+                  indeterminate
+              ></v-progress-linear>
+            </template>
+            <div>
+              <div class="absolute w-full">
+                <div class="flex p-2">
+                  <v-spacer></v-spacer>
+                </div>
+              </div>
+              <v-img height="150" :src="job.image"></v-img>
+            </div>
+
+            <v-card-title  style="height:80px;"  class="text-limit " >{{ job.name }}</v-card-title>
+
+            <v-card-text  style="height:150px;" >
+              <v-divider class="mt-2"></v-divider>
+              <div class="my-4 text-subtitle-1" v-if="job.office_data">
+                <div class="flex h-full items-center">
+                  <img class="h-10 mr-2" :src="$url + job.office_data.image" alt="" />
+                  <span class="text-xs">{{ job.office_data.name }}</span>
+                </div>
+              </div>
+              <div>{{ job.content }}</div>
+            </v-card-text>
+
+            <v-divider class="mx-4"></v-divider>
+            <v-card-actions>
+              <v-chip small @click="$router.push(`/admin/bookmark/${job.id}/`)"
+              ><v-icon>mdi-bookmark</v-icon> {{ job.bookmark }}
+              </v-chip>
+              <v-chip class="ml-2" small ><v-icon>mdi-eye</v-icon> {{ job.views }}</v-chip  >
+              <v-spacer></v-spacer>
+
+              <v-btn depressed fab small @click="openDialog(job)" color="warning">
+                <v-icon>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn depressed fab small @click="deleteJob(job)" color="error">
+                <v-icon>mdi-delete</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+
         </div>
-        <v-img height="150" :src="job.image"></v-img>
-      </div>
+    </div>
 
-      <v-card-title>{{ job.name }}</v-card-title>
-
-      <v-card-text>
-        <v-divider class="mt-2"></v-divider>
-        <div class="my-4 text-subtitle-1" v-if="job.office_data">
-          <div class="flex h-full items-center">
-            <img class="h-10 mr-2" :src="$url + job.office_data.image" alt="" />
-            <span class="text-xs">{{ job.office_data.name }}</span>
-          </div>
-        </div>
-        <div>{{ job.content }}</div>
-      </v-card-text>
-
-      <v-divider class="mx-4"></v-divider>
-      <v-card-actions>
-        <v-chip small @click="$router.push(`/admin/bookmark/${job.id}/`)"
-          ><v-icon>mdi-bookmark</v-icon> {{ job.bookmark }}
-        </v-chip>
-        <v-chip class="ml-2" small
-          ><v-icon>mdi-eye</v-icon> {{ job.views }}</v-chip
-        >
-        <v-spacer></v-spacer>
-
-        <v-btn depressed fab small @click="openDialog(job)" color="warning">
-          <v-icon>mdi-pencil</v-icon>
-        </v-btn>
-        <v-btn depressed fab small @click="deleteJob(job)" color="error">
-          <v-icon>mdi-delete</v-icon>
-        </v-btn>
-      </v-card-actions>
-    </v-card>
 
     <v-dialog
       v-model="dialog"
@@ -145,7 +149,7 @@
               id="id"
             ></v-text-field>
             <v-file-input
-              :rules="[$v.req]"
+
               v-model="form.file"
               :label="form.id ? `เปลี่ยนภาพประกอบ` : `ภาพประกอบ`"
               outlined

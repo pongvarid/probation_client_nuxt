@@ -11,9 +11,12 @@
       </v-btn>
     </v-toolbar>
 
-    <img v-if="job.image" :src="job.image" alt="">
+    <v-img class="w-full" v-if="job.image" :src="job.image" alt="">
+      <v-chip class="m-4"  color="info">{{job.category_name}}</v-chip>
+    </v-img>
 
-    <h2 class="text-xl ml-4 mr-4 mt-4">{{job.name}}</h2>
+    <h2 class="text-xl ml-4 mr-4 mt-4 font-semibold">{{job.name}}</h2>
+
     <span class="ml-4 mt-2">{{$kit.dateTH(job.created_at)}}</span>
 
 
@@ -33,6 +36,7 @@
 
       <div class="w-full flex">
         <h2 class="font-semibold">รายละเอียดงาน</h2>
+
         <v-spacer></v-spacer>
         <v-chip v-if="job.approve"  color="success" class="m-2"  small><v-icon size="20" class="mr-2">mdi-check-circle</v-icon> ยินดีรับผู้เคยถูกดำเนินคดี</v-chip>
       </div>

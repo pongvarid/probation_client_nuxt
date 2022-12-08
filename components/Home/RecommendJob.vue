@@ -18,10 +18,10 @@
             <div class="flex h-full items-center">
               <img class="h-10  mr-2" :src="$url+job.office_data.image" alt="">
               <span class="text-xs">{{job.office_data.name}}</span>
-
             </div>
           </div>
-          <div class="text-limit ">{{job.content}}</div>
+          <v-chip small color="info">{{job.category_name}}</v-chip>
+          <div class="text-limit mt-1">{{job.content}}</div>
         </v-card-text>
 
         <v-divider class="mx-4"></v-divider>
