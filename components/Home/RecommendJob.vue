@@ -1,7 +1,7 @@
 <template>
-<div  :class="($vuetify.breakpoint.width > 700 )?`flex flex-wrap`:``">
-    <div  class="p-1"  :class="($vuetify.breakpoint.width > 700 )?`w-1/3`:``"  v-for="job,index in data" :key="index" >
-      <v-card    max-width="374"  @click="$router.push(`/app/search/${job.id}/`)" >
+<div  :class="($vuetify.breakpoint.width > 700 )?`flex flex-wrap justify-center`:`flex flex-col w-full items-center`">
+    <div  class="p-1"   :class="($vuetify.breakpoint.width > 700 )?`w-300`:``"  v-for="job,index in data" :key="index" >
+      <v-card    :width="($vuetify.breakpoint.width > 700 )?300:350"  @click="$router.push(`/app/search/${job.id}/`)" >
         <template slot="progress">
           <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
         </template>
@@ -10,7 +10,7 @@
           <v-chip v-if="job.approve"  color="success" class="m-2"  small><v-icon size="20" class="mr-2">mdi-check-circle</v-icon> ยินดีรับผู้เคยถูกดำเนินคดี</v-chip>
         </v-img>
 
-        <v-card-title  style="height:80px;"  class="text-limit " >{{job.name}}   </v-card-title>
+        <v-card-title  style="height:80px;"  class="text-limit " >{{job.name}} </v-card-title>
 
         <v-card-text style="height:150px;">
           <v-divider class="mt-2"></v-divider>

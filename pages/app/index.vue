@@ -20,12 +20,12 @@
         <h2 class="text-base font-semibold">บริษัทชั้นนำ</h2>
         <Home-BestCompany></Home-BestCompany>
     </div>
-    <div class="p-5 ">
+    <div class="p-5">
         <h2 class="text-base font-semibold">งานแนะนำ</h2><br>
         <div class="flex flex-wrap">
             <v-chip v-for="skill,i in skills" :key="i" v-if="i < 6" @click="$router.push(`/app/search/?category=${skill.id}`)" class="m-1">#{{skill.name}}</v-chip>
         </div>
-        <Home-RecommendJob></Home-RecommendJob>
+        <Home-RecommendJob class=" mt-6"></Home-RecommendJob>
     </div>
 
     <!-- <h2>งานยอดนิยม</h2>
