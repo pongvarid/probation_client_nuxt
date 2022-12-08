@@ -1,7 +1,7 @@
 <template>
-<div> 
+<div  class="w-full container mx-auto px-4  h-full flex flex-col   llbg"  >
   <Profile-Avatar></Profile-Avatar>
-    <div class="p-4 -mt-28">
+    <div class="p-4 -mt-28 w-full mb-20">
         <v-card>
         <v-card-text>
             <div >
