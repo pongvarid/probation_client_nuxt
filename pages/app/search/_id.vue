@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="response">
     <v-toolbar flat fixed>
       <v-btn @click="$router.go(-1)" fab x-small outlined>
         <v-icon>mdi-arrow-left</v-icon>
@@ -48,6 +48,8 @@
 
       </div>
 
+      <Office-RequestJob :id="job.id"></Office-RequestJob>
+
     </div>
     <br><br><br>
   </div>
@@ -59,6 +61,7 @@ export default {
     dialog: true,
     job: {},
     check: false,
+    response:false,
   }),
   async created() {
     await this.run()
@@ -69,6 +72,7 @@ export default {
       this.job = await this.$core.getHttp(`/api/job/job-detail/${this.$route.params.id}/`)
       this.check = await this.$auth.getExistBookMark(this.job.id)
       await this.storeView()
+      this.response = true
     },
     async addBookMark(){
       let check = await this.$auth.getExistBookMark(this.job.id)
