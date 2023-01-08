@@ -35,14 +35,53 @@
     <div class="p-4">
 
       <div class="w-full flex">
-        <h2 class="font-semibold">รายละเอียดงาน</h2>
-
+        <h2 class="font-semibold">รายละเอียดงาน</h2> 
         <v-spacer></v-spacer>
         <v-chip v-if="job.approve"  color="success" class="m-2"  small><v-icon size="20" class="mr-2">mdi-check-circle</v-icon> ยินดีรับผู้เคยถูกดำเนินคดี</v-chip>
       </div>
 
-      <div class="mt-4" v-html="job.detail"></div>
+      <div class="mt-4 p-4 bg-gray-100" v-html="job.detail"></div>
+      <br>  
+      <div class="w-full">
+        <h2 class="font-semibold">การทำงาน</h2> 
+        <div class="bg-gray-100 rounded p-2 m-2" >
+        <Core-List icon="" head="วันทำงาน" :txt="job.date_work"></Core-List>
+        <Core-List icon="" head="เวลาทำงาน" :txt="job.time_work"></Core-List>
+        <Core-List icon="" head="อัตราจ้าง" :txt="job.rate"></Core-List>
+        </div>  
+        <br> 
+      </div>
 
+      <div class="w-full">
+        <h2 class="font-semibold">คุณสมบัติ</h2> 
+        <div class="bg-gray-100 rounded p-2 m-2" >
+        <Core-List icon="" head="เพศ" :txt="job.gender"></Core-List>
+        <Core-List icon="" head="อายุ" :txt="job.age"></Core-List>
+        <Core-List icon="" head="วุฒิการศึกษา" :txt="job.education"></Core-List>
+        <Core-List icon="" head="สาขาวิชา" :txt="job.major"></Core-List>
+        <Core-List icon="" head="ประสบการณ์ทำงาน" :txt="job.experience"></Core-List>
+        </div>  
+        <br> 
+      </div>
+
+      <div class="w-full">
+        <h2 class="font-semibold">เงื่อนไขในการทำงาน</h2> 
+        <div class="m-1 p-4 bg-gray-100" v-html="job.working_condition"></div>  
+        <br> 
+        <h2 class="font-semibold">วิธีการคัดเลือก</h2> 
+        <div class="m-1 p-4 bg-gray-100" v-html="job.selection_method"></div>  
+        <br> 
+        <h2 class="font-semibold">ระยะเวลาทดลองงาน</h2> 
+        <div class="m-1 p-4 bg-gray-100" v-html="job.trial_period"></div>  
+        <br> 
+        <h2 class="font-semibold">สวัสดิการ</h2> 
+        <div class="m-1 p-4 bg-gray-100" v-html="job.welfare_benefit"></div>  
+        <br> 
+      </div>
+
+      <div class="w-full flex">
+        <h2 class="font-semibold">การติดต่อ</h2>  
+      </div>
       <div class="bg-green-100 rounded p-2 m-2" v-if="job.office">
         <Core-List v-for="contact,i in job.office_data.contract" :key="i" icon="" :head="contact.name" :txt="contact.values"></Core-List>
 
