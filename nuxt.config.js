@@ -13,8 +13,8 @@ export default {
  
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - ui-orange',
-    title: 'ui-orange',
+    titleTemplate: 'ระบบค้นหางาน',
+    title: 'ระบบค้นหางาน',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
