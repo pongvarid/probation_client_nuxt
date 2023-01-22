@@ -89,8 +89,8 @@
       async deleteBookmark(bookmark) {
         console.log(bookmark);
         let check = await this.$web.confirm(
-            `ลบ Bookmark`,
-            `คุณต้องการลบ Bookmark นี้ใช่หรือไม่?`
+            `ต้องการลบงานที่บันทึก ?`,
+            `คุณต้องการลบ งานที่บันทึก นี้ใช่หรือไม่?`
         );
         if (check) {
           try {
@@ -101,7 +101,7 @@
               await this.$web.alert(
                   `ลบข้อมูลเรียบร้อย`,
                   `success`,
-                  `ลบ Bookmark ของคุณเรียบร้อยแล้ว`
+                  `ลบงาน ของคุณเรียบร้อยแล้ว`
               );
   
               await this.$auth.setUser();

@@ -15,7 +15,7 @@
       <v-card outlined class="mt-4" @click="$router.push(`/admin/search/${user.id}/`)" v-for="user,i in data" :key="i">
         <v-card-text>
           <div class="flex items-center">
-            <v-avatar size="80" >
+            <v-avatar size="80" class="border-2 border-blue-500">
               <v-img v-if="user.image_profile" :src="user.image_profile" ></v-img>
               <span v-else>ผู้ใช้</span>
             </v-avatar>

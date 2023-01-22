@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col justify-center items-center p-8 ccx">
 
-    <v-avatar size="150">
+    <v-avatar size="150" class="border-2 border-blue-200">
       <v-img v-if="user.image_profile" :src="user.image_profile" alt="">
       </v-img>
       <v-icon v-else>mdi-account</v-icon>

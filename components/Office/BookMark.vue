@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="w-full container mx-auto   ">   
-        <v-card class="mt-4" v-for="bookmark,i in data" :key="i">
+        <v-card class="mt-4" v-for="bookmark,i in data" :key="i" outlined>
           <v-card-text  @click="$router.push(`/admin/search/${bookmark.id}/`)">
             <div class="flex items-center">
-              <v-avatar size="80" >
+              <v-avatar size="80" class="border-2 border-green-500 " >
                 <v-img v-if="bookmark.image" :src="$url+bookmark.image" ></v-img>
                 <span v-else>ผู้ใช้</span>
               </v-avatar>

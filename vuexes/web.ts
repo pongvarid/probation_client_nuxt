@@ -68,7 +68,9 @@ class WebModule extends VuexModule {
       icon: type,
       title: title,
       text: text,
-      confirmButtonText: `OK`,
+            confirmButtonText: `ตกลง`,
+      cancelButtonText: `ยกเลิก`,
+
       confirmButtonColor: "#2196F3",
     })
   } 
@@ -80,6 +82,8 @@ class WebModule extends VuexModule {
       text: text,
       timer: timer,
       confirmButtonColor: "#2196F3",
+      confirmButtonText: `ตกลง`,
+      cancelButtonText: `ยกเลิก`,
 
     })
   }
@@ -88,7 +92,9 @@ class WebModule extends VuexModule {
       icon: type,
       title: title,
       text: text,
-      confirmButtonText: `OK`,
+            confirmButtonText: `ตกลง`,
+      cancelButtonText: `ยกเลิก`,
+
       confirmButtonColor: "#ef4444",
     })
   }
@@ -97,7 +103,9 @@ class WebModule extends VuexModule {
       icon: type,
       title: title,
       text: text,
-      confirmButtonText: `OK`,
+            confirmButtonText: `ตกลง`,
+      cancelButtonText: `ยกเลิก`,
+
       confirmButtonColor: "#ef4444",
     })
   } 
@@ -109,8 +117,8 @@ class WebModule extends VuexModule {
       imageUrl: img,
       showCancelButton: true,
       imageWidth: 200, 
-      confirmButtonText: `OK`,
-      cancelButtonText: `Cancel`,
+            confirmButtonText: `ตกลง`,
+      cancelButtonText: `ยกเลิก`, 
       confirmButtonColor: "#2196F3",
     }).then((result:any) => {
       return result.isConfirmed

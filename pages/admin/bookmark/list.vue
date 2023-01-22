@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    <div class="-mt-40">
+    <div class="-mt-40 p-2">
         <v-tabs v-model="tab">
             <v-tab>
                 บุคคลที่สนใจ

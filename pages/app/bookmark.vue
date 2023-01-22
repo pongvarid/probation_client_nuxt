@@ -1,14 +1,14 @@
 <template>
 <div class=" ">
     <div class="p-4 gghP  h-60">
-        <div class="w-full container mx-auto   ">
+        <div class="w-full   ">
             <div class="container mx-auto  bbg h-full w-full">
                 <h2 class="text-xl font-semibold">งานที่บันทึกไว้ & การสมัครงาน</h2>
             </div>
         </div>
     </div>
 
-    <div class="-mt-40">
+    <div class="-mt-40 p-2 bgho">
         <v-tabs v-model="tab" >
           <v-tab>
             งานที่บันทึกไว้

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.css">
+</head>
+<body>
+    <div>
+        <input type="text" id="id_subdistrict">
+        <input type="text" id="id_district">
+        <input type="text" id="id_province">
+        <input type="text" id="id_zipcode">
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/JQL.min.js"></script>
+        <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/typeahead.bundle.js"></script>
+ <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/zip.js/zip.js"></script>
+        
+<script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>
+        <script>
+            $.Thailand({
+                    database: 'https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/database/db.json',
+                    $district: $('#id_subdistrict'), // input ของตำบล
+                    $amphoe: $('#id_district'), // input ของอำเภอ
+                    $province: $('#id_province'), // input ของจังหวัด
+                    $zipcode: $('#id_zipcode'), // input ของรหัสไปรษณีย์
+                });
+                </script>
+    </div>
+</body>
+</html>

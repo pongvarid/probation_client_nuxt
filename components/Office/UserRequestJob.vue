@@ -10,7 +10,7 @@
             </v-card-title>
             <v-card-text>
                 <v-form ref="form">
-                    <v-select outlined dense type="choice" label="สถานะ" v-model="form.status" :rules="[$v.req]" item-text="name" item-value="value" :items="[ 
+                    <v-select outlined dense type="choice" label="สถานะการตอบรับ" v-model="form.status" :rules="[$v.req]" item-text="name" item-value="value" :items="[ 
                                 { name: 'รับสมัครเข้าทำงาน', value: 1 },
                                 { name: 'ไม่รับสมัครเข้าทำงาน', value: 2 }, 
                             ]"></v-select>
@@ -42,12 +42,15 @@
         <template v-slot:item.job_name="{ item }">
             <span class="font-semibold">{{item.job_name}}</span>
         </template>
+        <template v-slot:item.user_name="{ item }">
+            <span class="font-semibold">{{item.user_name}}</span> <span>({{ item.user_phone }})</span>
+        </template>
         <template v-slot:item.status_name="{ item }">
             <span class="font-semibold" :class="item.status_color">{{item.status_name}}</span>
         </template>
         <template v-slot:item.action="{ item }">
             <v-btn  :disabled="item.status != 0"  depressed @click="openUpdateDialog(item)" color="warning" small>
-                <v-icon>mdi-pencil</v-icon>แก้ไขข้อมูล
+                <v-icon>mdi-pencil</v-icon>ตอบรับการสมัคร
             </v-btn>
             <v-btn dark depressed @click="$router.push(`/admin/search/${item.user}/`)" color="primary" small>
                 <v-icon>mdi-account</v-icon> ดูข้อมูล
@@ -79,16 +82,18 @@ export default {
         return {
             req: v => !!v || "ฟิลล์นี้ต้องระบุข้อมูล",
             items: [],
-            headers: [{
+            headers: [
+            {
+                    text: 'ผู้สมัคร',
+                    sortable: true,
+                    value: 'user_name',
+                },    
+            {
                     text: 'งาน',
                     sortable: true,
                     value: 'job_name',
                 },
-                {
-                    text: 'ผู้สมัคร',
-                    sortable: true,
-                    value: 'user_name',
-                },
+               
                 {
                     text: 'วันที่สมัคร',
                     sortable: true,

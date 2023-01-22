@@ -28,8 +28,7 @@ export default {
 
     ],
     script: [
-      { src: 'https://cdn.tailwindcss.com' },
-      { src: 'test.js',   body: true },
+      { src: 'https://cdn.tailwindcss.com' }, 
      ],
 
   },

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bgho2">
     <v-toolbar flat fixed>
       <v-btn @click="$router.go(-1)" fab x-small outlined>
         <v-icon>mdi-arrow-left</v-icon>
